@@ -1,5 +1,4 @@
-let version = "0.0.1";
+import core from "./core"
 
-export default ():string => {
-  return `this version is ${version}`;
-};
+
+export default core

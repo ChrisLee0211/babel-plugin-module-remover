@@ -22,13 +22,16 @@
   "homepage": "https://github.com/ChrisLee0211/module-remover#readme",
   "devDependencies": {
     "@types/jest": "^26.0.4",
+    "@types/loader-utils": "^2.0.1",
     "eslint": "^7.4.0",
     "jest": "^26.1.0",
+    "loader-utils": "^2.0.0",
     "rollup": "^2.21.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^26.1.1",
     "tslib": "^2.0.0",
     "typescript": "^3.9.6"
-  }
+  },
+  "dependencies": {}
 }

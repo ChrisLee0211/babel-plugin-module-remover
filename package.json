@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/ChrisLee0211/module-remover#readme",
   "devDependencies": {
+    "@babel/generator": "^7.10.4",
+    "@babel/parser": "^7.10.4",
+    "@babel/traverse": "^7.10.4",
+    "@babel/types": "^7.10.4",
     "@types/jest": "^26.0.4",
     "@types/loader-utils": "^2.0.1",
     "eslint": "^7.4.0",

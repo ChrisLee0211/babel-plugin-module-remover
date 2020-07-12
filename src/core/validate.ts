@@ -8,7 +8,13 @@ interface OptionType {
  * @param opt loader option
  */
 const optionValidate = (opt):OptionType => {
-    const {target} = opt;
+    const {target,type} = opt;
+    const typeExpect:string[] = ["esm","cjs"]
+    if(utils.typeValidate(type,"string",`The type param in module-remover's option`)){
+        if(typeExpect.includes(type)===false){
+            throw Error(`The type param in module-remover's option only recieve keyword 'esm' or 'cjs'`)
+        }
+    }
     const isArray = utils.isArray(target);
     const isObj = utils.isObject(target);
     let targetObject = Object.create(null);

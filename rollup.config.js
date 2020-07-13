@@ -1,5 +1,6 @@
 import typescript from "rollup-plugin-typescript";
 import sourceMaps from "rollup-plugin-sourcemaps";
+import { eslint } from 'rollup-plugin-eslint';
 
 export default {
   input: "./src/main.ts",
@@ -8,7 +9,13 @@ export default {
       exclude: "node_modules/**",
       typescript: require("typescript")
     }),
-    sourceMaps()
+    sourceMaps(),
+    eslint({
+      throwOnError: true,
+      throwOnWarning: true,
+      include: ['src/**'],
+      exclude: ['node_modules/**']
+  }),
   ],
   output: [
     {

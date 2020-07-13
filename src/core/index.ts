@@ -11,7 +11,7 @@ import optionValidate from "./validate";
  * @author chrislee
  * @since 2020/7/11
  */
-function moudleRemover<T>(source:T):T{
+function moudleRemover<T>(this: any, source:T):T{
     const opt = loaderUtils.getOptions(this);
     const normalizeOpt = optionValidate(opt);
     return source

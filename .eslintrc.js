@@ -1,4 +1,3 @@
-// .eslintrc.js
 const eslintrc = {
     parser: '@typescript-eslint/parser', // 使用 ts 解析器
     extends: [
@@ -22,8 +21,9 @@ const eslintrc = {
         }
     },
     rules: {
-        eqeqeq:"always",
-        "array-callback-return":"always"
+        eqeqeq:"error",
+        "array-callback-return":"error",
+        semi:"error"
     }, // 自定义
 }
 

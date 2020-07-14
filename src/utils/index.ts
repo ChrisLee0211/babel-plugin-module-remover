@@ -19,14 +19,14 @@ enum typeEnum {
  * @Time 2020/7/12
  */
 export const isObject:(obj:any)=>boolean = (obj) =>{
-    let res:boolean = true;
+    let res = true;
     if(Object.prototype.toString.call(obj) === '[object Object]'){
         res = true;
     }else{
         res = false;
     }
-    return res
-}
+    return res;
+};
 
 /**
  * Verify that a value is undefined
@@ -38,12 +38,12 @@ export const isObject:(obj:any)=>boolean = (obj) =>{
 export const isUndefined:(obj:any)=>boolean = (obj) => {
     let res: boolean;
     if(obj === undefined||Object.prototype.toString.call(obj)===typeEnum["undefined"]){
-        res = true
+        res = true;
     }else{
-        res = false
+        res = false;
     }
-    return res
-}
+    return res;
+};
 
 /**
  * Verify that a value is an array
@@ -57,10 +57,10 @@ export const isArray:(obj:any)=>boolean = (obj) =>{
     if(obj instanceof Array || Object.prototype.toString.call(obj)===typeEnum["array"]){
         res = true;
     }else{
-        res = false
+        res = false;
     }
-    return res
-}
+    return res;
+};
 
 /**
  * Verify that a value is an boolean
@@ -74,23 +74,23 @@ export const isBoolean:(obj:any) => boolean = (obj) => {
     if(obj instanceof Array || Object.prototype.toString.call(obj)===typeEnum["boolean"]){
         res = true;
     }else{
-        res = false
+        res = false;
     }
-    return res
-}
+    return res;
+};
 
 export const typeValidate:(obj:any,type:keyof typeof typeEnum,constant:string)=>boolean = (obj,type,constant=`The value of target`) =>{
     let res:boolean;
     if(Object.prototype.toString.call(obj)=== typeEnum[type]){
-        res = true
+        res = true;
     }else{
-        let currentType:string = `undefined`;
-        for(let key in typeEnum){
+        let currentType = `undefined`;
+        for(const key in typeEnum){
             if(typeEnum[key] === Object.prototype.toString.call(obj)){
                 currentType = key;
             }
         }
-        throw Error(`TypeError:${constant} expect a ${type},but got ${currentType}`)
+        throw Error(`TypeError:${constant} expect a ${type},but got ${currentType}`);
     }
-    return res
-}
+    return res;
+};

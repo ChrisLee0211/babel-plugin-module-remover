@@ -1,18 +1,26 @@
 import traverse,{Visitor} from "@babel/traverse";
-import {OptionType} from "./validate";
+import {ModuleListType} from "./validate";
 import { File } from "@babel/types";
 
-export const transform = (ast:File,opt: OptionType):void => {
-    const visiter:Visitor = opt.type==="esm"?esmTransformer(opt):cjsTransformer(opt);
+export const transform = (ast:File,type:"esm"|"cjs",moduleList:ModuleListType):void => {
+    const targetModules:string[] = Object.keys(moduleList).filter((v:string)=>moduleList[v]===true);
+    const visiter:Visitor = type==="esm"?esmTransformer(targetModules):cjsTransformer(targetModules);
     traverse(ast,visiter);
 };
 
-function esmTransformer(opt:OptionType):Visitor {
-    const visiter:Visitor = {};
+function esmTransformer(targetModules:string[]):Visitor {
+    const visiter:Visitor = {
+        ImportDeclaration(path){
+            const {source} = path.node;
+            if(targetModules.includes(source.value)){
+                path.remove();
+            }
+        }
+    };
     return visiter;
 }
 
-function cjsTransformer(opt:OptionType):Visitor {
+function cjsTransformer(targetModules:string[]):Visitor {
     const visiter:Visitor = {};
     return visiter;
 }

@@ -43,6 +43,25 @@ function cjsTransformer(targetModules:string[]):Visitor {
                     }
                 }
             });
+        },
+        ExpressionStatement(path){
+            const {expression} = path.node;
+            if(expression.type === "CallExpression"){
+                const callee = expression.callee as Identifier;
+                if(callee.name&&callee.name === "require") {
+                    const {arguments:args} = expression;
+                        const isTarget:boolean = args.some((v) => {
+                            if(v.type === "StringLiteral"&&targetModules.includes(v.value)===true){
+                                return true;
+                            }else{
+                                return false;
+                            }
+                        });
+                        if(isTarget){
+                            path.remove();
+                        }
+                }
+            }
         }
     };
     return visiter;

@@ -4,6 +4,7 @@ import generator from "@babel/generator";
 import types from "@babel/types";
 import optionValidate from "./validate";
 import {prase} from "./parse";
+
 /**
  * use loader Option to remove some module we don`t want to import in final static file
  * @param source webpack chunk content 

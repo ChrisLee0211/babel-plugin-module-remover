@@ -1,8 +1,7 @@
 import loaderUtils from "loader-utils";
 import generator from "@babel/generator";
-
-import types from "@babel/types";
 import optionValidate from "./validate";
+import {transform} from "./transform";
 import {prase} from "./parse";
 
 /**
@@ -15,8 +14,9 @@ function moudleRemover<T>(this: any, source:string):string{
     const opt = loaderUtils.getOptions(this);
     const normalizeOpt = optionValidate(opt as any);
     const ast = prase(source);
-
-    return source;
+    transform(ast,(opt.type as any),normalizeOpt);
+    const result = generator(ast);
+    return result.code;
 }
 
 export default moudleRemover;

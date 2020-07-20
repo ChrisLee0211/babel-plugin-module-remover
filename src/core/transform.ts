@@ -2,14 +2,29 @@ import traverse,{Visitor} from "@babel/traverse";
 import {ModuleListType} from "./validate";
 import { File, Identifier } from "@babel/types";
 
+/**
+ * Transform a ast tree for removing the module 
+ * @param ast The AST object, it usually come from @babel/praser's return
+ * @param type The module type ,only support EsModule and commonJs
+ * @param moduleList The list of modules that user want to remove or keep it
+ * @author chrislee
+ * @Time 2020/7/18
+ */
 export const transform = (ast:File,type:"esm"|"cjs",moduleList:ModuleListType):void => {
     const targetModules:string[] = Object.keys(moduleList).filter((v:string)=>moduleList[v]===true);
-    const visiter:Visitor = type==="esm"?esmTransformer(targetModules):cjsTransformer(targetModules);
-    traverse(ast,visiter);
+    const visitor:Visitor = type==="esm"?esmTransformer(targetModules):cjsTransformer(targetModules);
+    traverse(ast,visitor);
 };
 
+/**
+ * The traverse's rule about Esmodule
+ * @param targetModules The list of modules that user want to remove or keep it
+ * @returns {visiter} a rule of traverse
+ * @author chrislee
+ * @Time 2020/7/18
+ */
 function esmTransformer(targetModules:string[]):Visitor {
-    const visiter:Visitor = {
+    const visitor:Visitor = {
         ImportDeclaration(path){
             const {source} = path.node;
             if(targetModules.includes(source.value)){
@@ -17,11 +32,18 @@ function esmTransformer(targetModules:string[]):Visitor {
             }
         }
     };
-    return visiter;
+    return visitor;
 }
 
+/**
+ * The traverse's rule about commonJs
+ * @param targetModules The list of modules that user want to remove or keep it
+ * @returns {visiter} a rule of traverse
+ * @author chrislee
+ * @Time 2020/7/18
+ */
 function cjsTransformer(targetModules:string[]):Visitor {
-    const visiter:Visitor = {
+    const visitor:Visitor = {
         VariableDeclaration(path){
             const {declarations} = path.node;
             Array.from(declarations).forEach(declarator => {
@@ -64,5 +86,5 @@ function cjsTransformer(targetModules:string[]):Visitor {
             }
         }
     };
-    return visiter;
+    return visitor;
 }

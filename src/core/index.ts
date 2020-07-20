@@ -10,7 +10,7 @@ import {prase} from "./parse";
  * @author chrislee
  * @since 2020/7/11
  */
-function moudleRemover<T>(this: any, source:string):string{
+function moudleRemover(this: any, source:string):string{
     const opt = loaderUtils.getOptions(this);
     const normalizeOpt = optionValidate(opt as any);
     const ast = prase(source);

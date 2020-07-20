@@ -5,17 +5,18 @@ import { eslint } from 'rollup-plugin-eslint';
 export default {
   input: "./src/main.ts",
   plugins: [
+    eslint({
+      throwOnError: true,
+      throwOnWarning: false,
+      include: ['src/**'],
+      exclude: ['node_modules/**']
+  }),
     typescript({
       exclude: "node_modules/**",
       typescript: require("typescript")
     }),
     sourceMaps(),
-    eslint({
-      throwOnError: true,
-      throwOnWarning: true,
-      include: ['src/**'],
-      exclude: ['node_modules/**']
-  }),
+    
   ],
   output: [
     {

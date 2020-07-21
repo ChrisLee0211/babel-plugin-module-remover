@@ -2,7 +2,7 @@
 {
     "compilerOptions": {
       /* 基础配置 */
-      "target": "esnext",
+      "target": "es2015",
       "lib": [
         "dom",
         "esnext"
@@ -17,7 +17,7 @@
   
       /* 模块分析配置 */
       "baseUrl": ".",
-      "outDir": "./lib",
+      "outDir": "./dist",
       "esModuleInterop": true,
       "moduleResolution": "node",
       "resolveJsonModule": true

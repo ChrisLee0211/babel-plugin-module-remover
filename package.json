@@ -1,8 +1,10 @@
 {
-  "name": "module-remover",
-  "version": "0.1.1",
+  "name": "module-hide-loader",
+  "version": "0.1.2",
   "description": "demo",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "module": "dist/main.js",
   "scripts": {
     "build": "rollup -c",
     "test": "jest --no-cache"
@@ -40,5 +42,10 @@
     "tslib": "^2.0.0",
     "typescript": "^3.9.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/generator": "^7.10.4",
+    "@babel/parser": "^7.10.4",
+    "@babel/traverse": "^7.10.4",
+    "@babel/types": "^7.10.4"
+  }
 }

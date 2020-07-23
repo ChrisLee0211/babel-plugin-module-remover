@@ -1,0 +1,42 @@
+import * as utils from "../src/utils";
+
+describe('utils工具测试',()=>{
+    it('isObject',()=>{
+        expect(utils.isObject({xx:''})).toBe(true);
+        expect((utils.isObject(22))).toBe(false);
+        expect((utils.isObject([]))).toBe(false);
+        expect((utils.isObject(''))).toBe(false);
+        expect((utils.isObject(true))).toBe(false);
+        expect((utils.isObject(Symbol('s')))).toBe(false);
+    });
+    it('isArray',()=>{
+        expect(utils.isArray([])).toBe(true);
+        expect((utils.isArray(22))).toBe(false);
+        expect((utils.isArray({}))).toBe(false);
+        expect((utils.isArray(''))).toBe(false);
+        expect((utils.isArray(true))).toBe(false);
+        expect((utils.isArray(Symbol('s')))).toBe(false);
+    });
+    it('isBoolean',()=>{
+        expect(utils.isBoolean(true)).toBe(true);
+        expect(utils.isBoolean(false)).toBe(true);
+        expect((utils.isBoolean(22))).toBe(false);
+        expect((utils.isBoolean([]))).toBe(false);
+        expect((utils.isBoolean(''))).toBe(false);
+        expect((utils.isBoolean(Symbol('s')))).toBe(false);
+    });
+    it('isUndefined',()=>{
+        let a:undefined;
+        expect(utils.isUndefined(true)).toBe(false);
+        expect(utils.isUndefined(a)).toBe(true);
+        expect((utils.isUndefined(22))).toBe(false);
+        expect((utils.isUndefined([]))).toBe(false);
+        expect((utils.isUndefined(''))).toBe(false);
+        expect((utils.isUndefined(true))).toBe(false);
+        expect((utils.isUndefined(Symbol('s')))).toBe(false);
+    });
+    it('typeValidate',()=>{
+        expect(()=>{utils.typeValidate([],'string');}).toThrow();
+        expect(utils.typeValidate(10,'number')).toEqual(true);
+    });
+});

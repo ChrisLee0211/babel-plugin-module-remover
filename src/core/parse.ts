@@ -8,6 +8,6 @@ import { File } from "@babel/types";
  * @Time 2020/7/14
  */
 export const prase = (code:string):File => {
-    const ast = parse(code);
+    const ast = parse(code,{sourceType:"module"});
     return ast;
 };

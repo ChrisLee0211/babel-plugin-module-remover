@@ -18,7 +18,7 @@ enum typeEnum {
  * @author  chrislee
  * @Time 2020/7/12
  */
-export const isObject:(obj:any)=>boolean = (obj) =>{
+export const isObject:(obj:unknown)=>boolean = (obj) =>{
     let res = true;
     if(Object.prototype.toString.call(obj) === '[object Object]'){
         res = true;
@@ -35,7 +35,7 @@ export const isObject:(obj:any)=>boolean = (obj) =>{
  * @author chrislee
  * @Time 2020/7/12
  */
-export const isUndefined:(obj:any)=>boolean = (obj) => {
+export const isUndefined:(obj:unknown)=>boolean = (obj) => {
     let res: boolean;
     if(obj === undefined||Object.prototype.toString.call(obj)===typeEnum["undefined"]){
         res = true;
@@ -52,7 +52,7 @@ export const isUndefined:(obj:any)=>boolean = (obj) => {
  * @author chrislee
  * @Time 2020/7/12
  */
-export const isArray:(obj:any)=>boolean = (obj) =>{
+export const isArray:(obj:unknown)=>boolean = (obj) =>{
     let res:boolean;
     if(obj instanceof Array || Object.prototype.toString.call(obj)===typeEnum["array"]){
         res = true;
@@ -69,9 +69,9 @@ export const isArray:(obj:any)=>boolean = (obj) =>{
  * @author chrislee
  * @Time 2020/7/12
  */
-export const isBoolean:(obj:any) => boolean = (obj) => {
+export const isBoolean:(obj:unknown) => boolean = (obj) => {
     let res:boolean;
-    if(obj instanceof Array || Object.prototype.toString.call(obj)===typeEnum["boolean"]){
+    if( Object.prototype.toString.call(obj)===typeEnum["boolean"]){
         res = true;
     }else{
         res = false;
@@ -79,7 +79,7 @@ export const isBoolean:(obj:any) => boolean = (obj) => {
     return res;
 };
 
-export const typeValidate:(obj:any,type:keyof typeof typeEnum,constant:string)=>boolean = (obj,type,constant=`The value of target`) =>{
+export const typeValidate:(obj:unknown,type:keyof typeof typeEnum,constant?:string)=>boolean = (obj,type,constant=`The value of target`) =>{
     let res:boolean;
     if(Object.prototype.toString.call(obj)=== typeEnum[type]){
         res = true;
@@ -90,7 +90,7 @@ export const typeValidate:(obj:any,type:keyof typeof typeEnum,constant:string)=>
                 currentType = key;
             }
         }
-        throw Error(`TypeError:${constant} expect a ${type},but got ${currentType}`);
+        throw TypeError(`${constant} expect a ${type},but got ${currentType}`);
     }
     return res;
 };

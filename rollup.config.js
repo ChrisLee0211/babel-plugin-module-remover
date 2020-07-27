@@ -22,7 +22,6 @@ export default {
       typescript: require("typescript")
     }),
     sourceMaps(),
-    
   ],
   output: [
     {

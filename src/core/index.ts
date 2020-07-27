@@ -2,7 +2,7 @@ import loaderUtils from "loader-utils";
 import generator from "@babel/generator";
 import optionValidate from "./validate";
 import {transform} from "./transform";
-import {prase} from "./parse";
+import {parser} from "./parse";
 
 /**
  * use loader Option to remove some module we don`t want to import in final static file
@@ -13,7 +13,7 @@ import {prase} from "./parse";
 function moudleRemover(this: any, source:string):string{
     const opt = loaderUtils.getOptions(this);
     const normalizeOpt = optionValidate(opt as any);
-    const ast = prase(source);
+    const ast = parser(source);
     transform(ast,(opt.type as any),normalizeOpt);
     const result = generator(ast);
     return result.code;

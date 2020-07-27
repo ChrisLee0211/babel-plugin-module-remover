@@ -22,7 +22,7 @@ const optionValidate = (opt:OptionType):ModuleListType => {
     }
     const isArray = utils.isArray(target);
     const isObj = utils.isObject(target);
-    const targetObject = Object.create(null);
+    const targetObject = Object.create({});
     if(isArray){
         if((target as string[]).length <1) return {};
         for(const item of (target as string[])){

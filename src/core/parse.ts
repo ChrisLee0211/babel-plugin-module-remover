@@ -7,7 +7,7 @@ import { File } from "@babel/types";
  * @author chrislee
  * @Time 2020/7/14
  */
-export const prase = (code:string):File => {
+export const parser = (code:string):File => {
     const ast = parse(code,{sourceType:"module"});
     return ast;
 };

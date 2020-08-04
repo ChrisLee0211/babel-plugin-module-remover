@@ -1,4 +1,5 @@
-import traverse,{Visitor} from "@babel/traverse";
+import * as traverse from "@babel/traverse";
+import {Visitor} from "@babel/traverse";
 import {ModuleListType} from "./validate";
 import { File, Identifier } from "@babel/types";
 
@@ -13,7 +14,7 @@ import { File, Identifier } from "@babel/types";
 export const transform = (ast:File,type:"esm"|"cjs",moduleList:ModuleListType):void => {
     const targetModules:string[] = Object.keys(moduleList).filter((v:string)=>moduleList[v]===true);
     const visitor:Visitor = type==="esm"?esmTransformer(targetModules):cjsTransformer(targetModules);
-    traverse(ast,visitor);
+    traverse.default(ast,visitor);
 };
 
 /**

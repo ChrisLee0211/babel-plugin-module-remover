@@ -1,15 +1,16 @@
-enum typeEnum {
-    "string"="[object String]",
-    "number"="[object Number]",
-    "boolean"="[object Boolean]",
-    "undefined"="object Undefined]",
-    "null"="object Null]",
-    "object"="[object Object]",
-    "function"="[object Function]",
-    "array"="[object Array]",
-    "date"="[object Date]",
-    "reg"="[object RegExp]"
-}
+const typeEnum = {
+    "string":"[object String]",
+    "number":"[object Number]",
+    "boolean":"[object Boolean]",
+    "undefined":"object Undefined]",
+    "null":"object Null]",
+    "object":"[object Object]",
+    "function":"[object Function]",
+    "array":"[object Array]",
+    "date":"[object Date]",
+    "reg":"[object RegExp]"
+};
+
 
 /**
  * Verify that a value is an object

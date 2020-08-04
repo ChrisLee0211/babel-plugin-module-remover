@@ -1,6 +1,7 @@
 /*  tsconfig.json */
 {
     "compilerOptions": {
+      "rootDir": "src",
       /* 基础配置 */
       "target": "es2015",
       "lib": [
@@ -24,6 +25,10 @@
     },
     "include": [
       "src"
+    ],
+    "exclude": [
+      "node_modules/**",
+      "test"
     ]
   }
   

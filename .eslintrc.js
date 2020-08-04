@@ -23,7 +23,7 @@ const eslintrc = {
     rules: {
         eqeqeq:"error",
         "array-callback-return":"error",
-        semi:"error"
+        semi:"error",
     }, // 自定义
 }
 

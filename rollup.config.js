@@ -1,13 +1,15 @@
-import typescript from "rollup-plugin-typescript";
+import typescript from "@rollup/plugin-typescript";
+import babel from "rollup-plugin-babel";
 import sourceMaps from "rollup-plugin-sourcemaps";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from '@rollup/plugin-commonjs';
 import json from 'rollup-plugin-json';
 import { eslint } from 'rollup-plugin-eslint';
 
 export default {
   input: "./src/main.ts",
   plugins: [
+    typescript(),
     resolve(),
     commonjs(),
     json(),
@@ -17,12 +19,12 @@ export default {
       include: ['src/**'],
       exclude: ['node_modules/**']
     }),
-    typescript({
-      exclude: "node_modules/**",
-      typescript: require("typescript")
-    }),
     sourceMaps(),
+    // babel({
+    //   exclude:'node_modules/**'
+    // })
   ],
+
   output: [
     {
       format: "cjs",

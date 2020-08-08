@@ -1,44 +1,28 @@
-import * as utils from "../utils";
-export interface ModuleListType {
-    [key:string]:boolean
+import {isArray} from "../utils";
+export interface Options {
+    type: "esm" | "cjs",
+    target:string[]
 }
 
-export interface OptionType {
-    type:"esm"|"cjs",
-    target:ModuleListType|undefined|string[]
-}
-
-/**
- * validate the option and normalize it 
- * @param opt loader option
- */
-const optionValidate = (opt:OptionType):ModuleListType => {
-    const {target,type} = opt;
-    const typeExpect:string[] = ["esm","cjs"];
-    if(utils.typeValidate(type,"string",`The type param in module-remover's option`)){
-        if(typeExpect.includes(type)===false){
-            throw Error(`The type param in module-remover's option only recieve keyword 'esm' or 'cjs'`);
+export const optionValidate = (opt:Options): Options => {
+    const optionsKeys:string[] = Object.keys(opt);
+    const opts:Options = Object.create({});
+    if(optionsKeys.includes("type")){
+        if(["esm","cjs"].includes(opt["type"])===false){
+            throw Error(`the prop 'type' of option in @babel/module-remover only revicive param 'cjs' or 'esm'`);
         }
+        opts["type"] = opt["type"];
+    }else{
+        opts["type"] = "esm";
     }
-    const isArray = utils.isArray(target);
-    const isObj = utils.isObject(target);
-    const targetObject = Object.create({});
-    if(isArray){
-        if((target as string[]).length <1) return {};
-        for(const item of (target as string[])){
-           if(utils.typeValidate(item,"string",`The value of target array in the module-remover's option`)){
-            targetObject[item] =true;
-           } 
+    if(optionsKeys.includes("target")){
+        if(isArray(opt["target"])){
+            opts["target"] = opt["target"];
+        }else{
+            throw Error(`the prop 'target' of option in @babel/module-remover expect a Array, but got another type `);
         }
-    }else if(isObj){
-        const keys:string[] = Object.keys(target as ModuleListType);
-        for(const item of keys){
-            if(utils.typeValidate((target as ModuleListType)[item],"boolean",`The value of target object in the module-remover's option`)){
-                targetObject[item] = (target as ModuleListType)[item];
-            }
-        }
+    }else{
+        throw Error(`the prop 'target' of option in @babel/module-remover expect a Array, but got undefined `);
     }
-    return targetObject;
+    return opts;
 };
-
-export default optionValidate;

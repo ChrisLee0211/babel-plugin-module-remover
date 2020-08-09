@@ -1,27 +1,31 @@
 {
-  "name": "module-hide-loader",
-  "version": "0.1.4",
-  "description": "demo",
+  "name": "@babel/module-remover",
+  "version": "0.0.1",
+  "description": "A babel plugin can remove the specified module",
   "main": "lib/bundle.cjs.js",
   "types": "dist/main.d.ts",
   "module": "lib/bundle.esm.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisLee0211/babel-module-remover.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "test": "jest --no-cache --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ChrisLee0211/module-remover.git"
-  },
   "keywords": [
-    "webpack-loader"
+    "babel-plugin"
   ],
   "author": "chrislee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ChrisLee0211/module-remover/issues"
+    "url": "https://github.com/ChrisLee0211/babel-module-remover/issues"
   },
-  "homepage": "https://github.com/ChrisLee0211/module-remover#readme",
+  "homepage": "https://github.com/ChrisLee0211/babel-module-remover#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/generator": "^7.10.4",

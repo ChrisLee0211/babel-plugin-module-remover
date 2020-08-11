@@ -4,6 +4,12 @@ export interface Options {
     target:string[]
 }
 
+/**
+ * validata the babel plugin options and return it
+ * @param opt plugin options
+ * @Time 2020/08/11
+ * @author chrislee
+ */
 export const optionValidate = (opt:Options): Options => {
     const optionsKeys:string[] = Object.keys(opt);
     const opts:Options = Object.create({});

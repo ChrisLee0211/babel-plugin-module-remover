@@ -3,9 +3,9 @@ import { Identifier } from "@babel/types";
 import {optionValidate, Options} from "./validate";
 
 export default function({type:t}){
-    const visitor:Visitor<{opt:Options}> = {
+    const visitor:Visitor<{opts:Options}> = {
         ImportDeclaration(path,state){
-            const {target:targetModules} = optionValidate(state.opt);
+            const {target:targetModules} = optionValidate(state.opts);
             const {source} = path.node;
             if(targetModules.includes(source.value)){
                 path.remove();
@@ -13,7 +13,7 @@ export default function({type:t}){
         },
         VariableDeclaration(path,state){
             const {declarations} = path.node;
-            const {target:targetModules} = optionValidate(state.opt);
+            const {target:targetModules} = optionValidate(state.opts);
             Array.from(declarations).forEach(declarator => {
                 const {init} = declarator;
                 if(init?.type === "CallExpression"){
@@ -36,7 +36,7 @@ export default function({type:t}){
         },
         ExpressionStatement(path,state){
             const {expression} = path.node;
-            const {target:targetModules} = optionValidate(state.opt);
+            const {target:targetModules} = optionValidate(state.opts);
             if(expression.type === "CallExpression"){
                 const callee = expression.callee as Identifier;
                 if(callee.name&&callee.name === "require") {

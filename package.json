@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-module-remover",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A babel plugin can remove the specified module",
   "main": "lib/bundle.cjs.js",
   "types": "dist/main.d.ts",

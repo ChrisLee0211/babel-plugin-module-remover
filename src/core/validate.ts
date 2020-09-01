@@ -1,6 +1,6 @@
 import {isArray} from "../utils";
 export interface Options {
-    type: "esm" | "cjs",
+    type: "esm" | "cjs"| "all",
     target:string[]
 }
 
@@ -15,11 +15,11 @@ export const optionValidate = (opt:Options): Options => {
     const opts:Options = Object.create({});
     if(optionsKeys.includes("type")){
         if(["esm","cjs"].includes(opt["type"])===false){
-            throw Error(`the prop 'type' of option in @babel/module-remover only revicive param 'cjs' or 'esm'`);
+            throw Error(`the prop 'type' of option in @babel/module-remover only revicive param 'cjs','esm' or 'all'`);
         }
         opts["type"] = opt["type"];
     }else{
-        opts["type"] = "esm";
+        opts["type"] = "all";
     }
     if(optionsKeys.includes("target")){
         if(isArray(opt["target"])){
